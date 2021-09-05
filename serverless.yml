@@ -1,0 +1,24 @@
+service: auth-service
+frameworkVersion: 2.55.0
+configValidationMode: error
+
+plugins:
+  - serverless-bundle
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  memorySize: 128
+  region: eu-west-1
+  stage: ${opt:stage,'dev'}
+  lambdaHashingVersion: 20201221
+  environment:
+    AUTH0_PUBLIC_KEY: ${file(secret.pem)}
+
+functions:
+  auth:
+    handler: src/handlers/auth.handler
+
+custom:
+  bundle:
+    linting: false
