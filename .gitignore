@@ -3,3 +3,4 @@ node_modules
 secret.pem
 .webpack
 .DS_Store
+.idea
